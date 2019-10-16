@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Title</title>
+    <style>
+        body {
+            color: wheat;
+        }
+
+        h1 {
+            color: wheat;
+        }
+    </style>
+</head>
+<body>
+<style>
+    body {
+        background-image: url("https://mail.google.com/mail/u/0?ui=2&ik=b16dd04099&attid=0.1.1&permmsgid=msg-f:1647573545112076922&th=16dd5b68f9bc827a&view=fimg&sz=s0-l75-ft&attbid=ANGjdJ_g4__1kpKvVvm4QlUBAMHOSNuFt3fXnOf70kxGUgKHsXCfFxtDUv1-LF4dj46OCLk8SJb0znQmOgXerWC_p63HX0ZI1epoG1GL5wRkIXujlNdPJj4wucCoeu8&disp=emb");
+        background-repeat: repeat;
+        background-size: 950px 975px;
+    }
+</style>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/petlist">pet list</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/petform">add new pet</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/personform">add new person</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/personlist">person list</a>
+        </li>
+
+    </ul>
+</nav>
+<br />
+
+<h1>Person Form</h1>
+<form action="#" th:action="@{/processperson}" th:object="${persons}" method="post">
+    <input type="hidden" th:field="*{personid}" />
+    Person Name :<input type="text" th:field="*{name}" />
+    <span th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}"></span><br/>
+    Person Location :<input type="text" th:field="*{location}" />
+    <span th:if="${#fields.hasErrors('location')}"
+          th:errors="*{location}"></span><br/>
+
+    <input type="submit" value="Submit" />
+
+</form>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
