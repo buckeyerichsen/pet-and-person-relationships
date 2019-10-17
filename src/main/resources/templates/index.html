@@ -8,21 +8,22 @@
     <title>Title</title>
     <style>
         body {
-            color: wheat;
+            color: antiquewhite;
         }
 
         h1 {
-            color: wheat;
+            color: antiquewhite;
         }
     </style>
 
 </head>
 <body>
+
 <style>
     body {
-        background-image: url("https://mail.google.com/mail/u/0?ui=2&ik=b16dd04099&attid=0.1.1&permmsgid=msg-f:1647573545112076922&th=16dd5b68f9bc827a&view=fimg&sz=s0-l75-ft&attbid=ANGjdJ_g4__1kpKvVvm4QlUBAMHOSNuFt3fXnOf70kxGUgKHsXCfFxtDUv1-LF4dj46OCLk8SJb0znQmOgXerWC_p63HX0ZI1epoG1GL5wRkIXujlNdPJj4wucCoeu8&disp=emb");
-        background-repeat: repeat;
-        background-size: 950px 975px;
+        background-image: url("https://images.wallpaperscraft.com/image/kitten_dark_lying_71730_1920x1200.jpg");
+        background-repeat: no-repeat;
+        background-size: 1920px 940px;
     }
 </style>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -43,22 +44,34 @@
         <li class="nav-item">
             <a class="nav-link" href="/personlist">person list</a>
         </li>
+        <form class="form-inline" th:action="@{/processsearch}" method="post">
+
+            <input class="form-control mr-sm-2" name="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
 
     </ul>
 </nav>
 <br />
-<font color="#f5deb3"><h1>Persons</h1></font>
+<font color="#faebd7"><h1>Persons</h1></font>
 <table>
     <tr>
-        <th><font color="#f5deb3">Persons Name</font></th>
+        <th><font color="#faebd7">Persons Name</font></th>
         <br/>
-        <th><font color="#f5deb3">Persons Location</font></th>
+        <th><font color="#faebd7">Persons Location</font></th>
     </tr>
     <tr th:each="person : ${persons}">
         <td th:text="${person.name}">
         <td th:text="${person.location}">
         </td>
+        <td>
+
+            <a class="btn btn-outline-light" th:href="@{/updateperson/{id}(id=${person.personid})}" role="button">Update</a>
+            <a class="btn btn-outline-light" th:href="@{/detailperson/{id}(id=${person.personid})}" role="button">Details</a>
+            <a class="btn btn-outline-light" th:href="@{/deleteperson/{id}(id=${person.personid})}" role="button">Delete</a>
+        </td>
     </tr>
+
 </table>
 <br/>
 <h1>Pets</h1>
@@ -71,6 +84,12 @@
     <tr th:each="pet : ${pets}">
         <td th:text="${pet.name}">
         <td th:text="${pet.species}">
+        </td>
+        <td>
+
+            <a class="btn btn-outline-light" th:href="@{/updatepet/{id}(id=${pet.id})}" role="button">Update</a>
+            <a class="btn btn-outline-light" th:href="@{/detailpet/{id}(id=${pet.id})}" role="button">Details</a>
+            <a class="btn btn-outline-light" th:href="@{/deletepet/{id}(id=${pet.id})}" role="button">Delete</a>
         </td>
     </tr>
 </table>

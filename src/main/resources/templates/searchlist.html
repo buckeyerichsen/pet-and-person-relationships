@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <title>Title</title>
     <style>
         body {
-            color: antiquewhite;
+            color: wheat;
         }
 
         h1 {
-            color: antiquewhite;
+            color: wheat;
         }
     </style>
 </head>
@@ -46,30 +45,52 @@
     </ul>
 </nav>
 <br />
-<h1>Pet Form</h1>
-<form action="#" th:action="@{/petform}" th:object="${pet}" method="post">
-    <input type="hidden" th:field="*{id}" />
-    Pet Name :<input type="text" th:field="*{name}" />
-    <span th:if="${#fields.hasErrors('name')}"
-          th:errors="*{name}"></span><br/>
-    Pet Species :<input type="text" th:field="*{species}" />
-    <span th:if="${#fields.hasErrors('species')}"
-          th:errors="*{species}"></span><br/>
-    <select name="person" th:field="*{persons}">
-        <option th:each="person :${person}" th:value="${person.personid}"
-                th:text="${person.name}">
 
-        </option>
-    </select>
+<br/>
+<h1>Person</h1>
 
-    <button class="btn btn-primary" type="submit">Submit</button>
-</form>
+
+<tr>
+    <h3>Name and location</h3>
 
 
 
+</tr>
+<tr th:each="person : ${persons}">
+    <td th:text="${person.name}">
+    <td></td>
+    <td th:text="${person.location}">
+    <td th:each="pet : ${person.pets}">
+    </td>
+    <ul>
+        <div th:each="pet : ${person.pets}">
+            <li th:inline="text"><b>[[${pet.name}]]</b>
+                [[${pet.species}]].</li>
+        </div>
+    </ul>
+</tr>
 
+<table>
+    <tr>
+        <th>Pet Name</th>
+        <th></th>
+        <th>Pet Species</th>
+    </tr>
+    <tr th:each="pet : ${pets}">
+        <td th:text="${pet.name}">
+        <td></td>
+        <td th:text="${pet.species}">
+        </td>
+        <ul>
+            <div th:each="person : ${pet.persons}">
+                <li th:inline="text"><b>[[${person.name}]]</b>
+                    [[${person.location}]].</li>
 
+            </div>
+        </ul>
 
+    </tr>
+</table>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
